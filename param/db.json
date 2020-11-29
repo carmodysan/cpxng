@@ -1,0 +1,13 @@
+{
+  "db_connection" : [
+    {
+      "db_type" : "mariadb",
+      "db_user" : "root",
+      "db_pwd" : "root",
+      "db_host" : "localhost",
+      "db_port" : "3306",
+      "db_database_1" : "refer",
+      "db_database_2" : "cartes"
+    }
+  ]
+}

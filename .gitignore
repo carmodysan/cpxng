@@ -1,0 +1,5 @@
+# Exclude documentation folder
+documentation/
+
+# Exclude all pycache
+*/__pycache__
