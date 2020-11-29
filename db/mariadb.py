@@ -1,4 +1,4 @@
-import mariadb
+#import mariadb
 import sys
 import json
 
@@ -13,19 +13,21 @@ class MariaDB(object):
         # Connect to MariaDB Platform
         try:
             # Refer database
-            self.conn_refer = mariadb.connect(
-                user=self.db_data['db_connection'][0]['db_user'],
-                password=self.db_data['db_connection'][0]['db_pwd'],
-                host=self.db_data['db_connection'][0]['db_host'],
-                port=int(self.db_data['db_connection'][0]['db_port']),
-                database=self.db_data['db_connection'][0]['db_database_1'])
+            #self.conn_refer = mariadb.connect(
+            #    user=self.db_data['db_connection'][0]['db_user'],
+            #    password=self.db_data['db_connection'][0]['db_pwd'],
+            #    host=self.db_data['db_connection'][0]['db_host'],
+            #    port=int(self.db_data['db_connection'][0]['db_port']),
+            #    database=self.db_data['db_connection'][0]['db_database_1'])
             # Cartes database
-            self.conn_cartes = mariadb.connect(
-                user=self.db_data['db_connection'][0]['db_user'],
-                password=self.db_data['db_connection'][0]['db_pwd'],
-                host=self.db_data['db_connection'][0]['db_host'],
-                port=int(self.db_data['db_connection'][0]['db_port']),
-                database=self.db_data['db_connection'][0]['db_database_2'])
+            #self.conn_cartes = mariadb.connect(
+            #    user=self.db_data['db_connection'][0]['db_user'],
+            #    password=self.db_data['db_connection'][0]['db_pwd'],
+            #    host=self.db_data['db_connection'][0]['db_host'],
+            #    port=int(self.db_data['db_connection'][0]['db_port']),
+            #    database=self.db_data['db_connection'][0]['db_database_2'])
+            self.conn_refer = "test"
+            self.conn_cartes = "etest"
 
             observer.Event('update_connect_db', 'blabla')
         except mariadb.Error as e:

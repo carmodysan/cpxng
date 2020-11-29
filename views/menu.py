@@ -24,14 +24,15 @@ class Menu():
         self.about_menu.add_command(label="About", command=self.menu_about)
 
     def menu_quit(self, root):
-        db = mariadb.MariaDB.Instance()
-        db.close_connection()
+        #db = mariadb.MariaDB.Instance()
+        #db.close_connection()
         root.destroy()
 
     def menu_about(self):
         messagebox.showinfo("Ceci est un essai :", "Le")
 
     def menu_connect(self):
-        db = mariadb.MariaDB.Instance()
-        db.query_refer("SELECT * FROM essai")
-        db.query_cartes("SELECT * FROM essai")
+        print("Test")
+        #db = mariadb.MariaDB.Instance()
+        #db.query_refer("SELECT * FROM essai")
+        #db.query_cartes("SELECT * FROM essai")
