@@ -3,3 +3,6 @@ documentation/
 
 # Exclude all pycache
 */__pycache__
+
+# Exclude all logs
+log/

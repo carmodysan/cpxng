@@ -4,12 +4,16 @@ from sys import platform
 
 from views import statusbar, toolbarside, toolbartop
 from views import aboutview, statsview, downloadview
+from utils import log
 
 
 # Classe principale de la vue de l'application. Elle servira de point d'entrée
 # à tous les objets de la vue.
 class View():
     def __init__(self, master):
+        self.logger = log.Logger.Instance()
+        self.logger.appdebug('Initialising view')
+
         self.frame = Tk.Frame(master)
 
         # Check operating system to maximize window correctly
@@ -38,34 +42,42 @@ class View():
         self.main_frame = None
         self.display_stats(master)
 
-    def display_stats(self, master):
-        if self.main_frame is not None:
-            self.main_frame.destroy()
-            print('destroy previous frame')
+        self.logger.appdebug('View initialised')
 
+    def display_stats(self, master):
+        self.logger.appdebug('Displaying stats view')
+        # Destroy previous frame if exists
+        self.destroy_maif_frame()
         # The main frame contains the content
         self.main_frame = Tk.Frame(master)
         self.stats_view.load_content(self.main_frame)
         self.main_frame.pack(side=Tk.TOP, fill=Tk.BOTH, anchor=Tk.CENTER)
+        self.logger.appdebug('Stats view displayed')
 
     def display_about(self, root):
-        if self.main_frame is not None:
-            self.main_frame.destroy()
-            print('destroy previous frame')
-
+        self.logger.appdebug('Displaying about view')
+        # Destroy previous frame if exists
+        self.destroy_maif_frame()
+        # The main frame contains the content
         self.main_frame = Tk.Frame(root)
         self.about_view.load_content(self.main_frame)
         self.main_frame.pack(side=Tk.TOP, fill=Tk.BOTH, anchor=Tk.CENTER)
+        self.logger.appdebug('About view displayed')
 
     def display_download(self, master):
+        self.logger.appdebug('Displaying download view')
+        # Destroy previous frame if exists
+        self.destroy_maif_frame()
         # The main frame contains the content
-        if self.main_frame is not None:
-            self.main_frame.destroy()
-            print('destroy previous frame')
-
         self.main_frame = Tk.Frame(master)
         self.download_view.load_content(self.main_frame)
         self.main_frame.pack(side=Tk.TOP, fill=Tk.BOTH, anchor=Tk.CENTER)
+        self.logger.appdebug('Download view displayed')
+
+    def destroy_maif_frame(self):
+        if self.main_frame is not None:
+            self.main_frame.destroy()
+            self.logger.appdebug('Previous display destroyed')
 
 
 class Logo():
@@ -75,7 +87,7 @@ class Logo():
         self.img_logo = Image.open("ressources/logo.png").resize((32, 32))
         self.eimg_logo = ImageTk.PhotoImage(self.img_logo)
 
-        #1d2226 for black logo <i class="fas fa-sign-out-alt"></i>
+        # 1d2226 for black logo <i class="fas fa-sign-out-alt"></i>
         label = Tk.Label(self.frame_logo, image=self.eimg_logo, bg='#1d2226')
         label.pack(side=Tk.LEFT, padx=10, pady=10)
 
